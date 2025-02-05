@@ -60,7 +60,6 @@ function inter(points1, points2, n) {
     ctx.stroke();
   }
 }
-
 cubeBezier(start, ctrlP, end);
 //https://stackoverflow.com/questions/11798053/canvas-animate-bezier-curve-drawing
 
