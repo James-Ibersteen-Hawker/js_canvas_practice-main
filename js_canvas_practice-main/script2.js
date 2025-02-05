@@ -16,7 +16,7 @@ let end = {
 };
 let subWidth = 20;
 let subHeight = subWidth;
-function cubeBezier(p1, p2, p3) {
+function quadraticBezier(p1, p2, p3) {
   let bezierPoints = [];
   drawLines(p1, p2, p3, bezierPoints);
   equalize(bezierPoints);
@@ -110,4 +110,4 @@ function sortPoints(bezierPoints) {
   });
   return bezierPoints;
 }
-cubeBezier(start, ctrlP, end);
+quadraticBezier(start, ctrlP, end);
