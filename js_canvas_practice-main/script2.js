@@ -121,61 +121,94 @@ function sortPoints(bezierPoints) {
 }
 function signature() {
   let total = [];
-  let start = {
-    x: 10,
-    y: 90,
-  };
-  let ctrlP = {
+  let start;
+  let ctrlP;
+  let end;
+  let sub;
+  //1st segment
+  {
+    start = {
+      x: 10,
+      y: 90,
+    };
+    ctrlP = {
+      x: 20,
+      y: 145,
+    };
+    end = {
+      x: 221,
+      y: 55,
+    };
+    //draw
+    sub = quadraticBezier(start, ctrlP, end);
+    for (let i = 0; i < sub.length; i++) {
+      total.push(sub[i]);
+    }
+  }
+  //2nd segment
+  {
+    start = {
+      x: 221,
+      y: 55,
+    };
+    ctrlP = {
+      x: 215,
+      y: 80,
+    };
+    end = {
+      x: 190,
+      y: 100,
+    };
+    sub = quadraticBezier(start, ctrlP, end);
+    for (let i = 0; i < sub.length; i++) {
+      total.push(sub[i]);
+    }
+  }
+  //3rd segment
+  {
+    start = {
+      x: 190,
+      y: 100,
+    };
+    ctrlP = {
+      x: 127,
+      y: 0,
+    };
+    end = {
+      x: 20,
+      y: 145,
+    };
+    sub = quadraticBezier(start, ctrlP, end);
+    for (let i = 0; i < sub.length; i++) {
+      total.push(sub[i]);
+    }
+  }
+  //4th segment
+  {
+    start = {
+      x: 20,
+      y: 145,
+    };
+    ctrlP = {
+      x: 15,
+      y: 170,
+    };
+    end = {
+      x: 65,
+      y: 140,
+    };
+    sub = quadraticBezier(start, ctrlP, end);
+    for (let i = 0; i < sub.length; i++) {
+      total.push(sub[i]);
+    }
+  }
+  //5th segment
+  start = {
     x: 20,
     y: 145,
   };
-  let end = {
-    x: 221,
-    y: 55,
-  };
-  //draw
-  let sub = quadraticBezier(start, ctrlP, end);
-  for (let i = 0; i < sub.length; i++) {
-    total.push(sub[i]);
-  }
-  start = {
-    x: 221,
-    y: 55,
-  };
   ctrlP = {
-    x: 215,
-    y: 80,
-  };
-  end = {
-    x: 190,
-    y: 100,
-  };
-  sub = quadraticBezier(start, ctrlP, end);
-  for (let i = 0; i < sub.length; i++) {
-    total.push(sub[i]);
-  }
-  start = {
-    x: 190,
-    y: 100,
-  };
-  ctrlP = {
-    x: 127,
-    y: 0,
-  };
-  end = {
-    x: 20,
-    y: 145,
-  };
-  sub = quadraticBezier(start, ctrlP, end);
-  for (let i = 0; i < sub.length; i++) {
-    total.push(sub[i]);
-  }
-  start = {
-    x: 20,
-    y: 145,
-  };
-  ctrlP = {
-    x: 20,
+    x: 15,
     y: 170,
   };
   end = {
