@@ -2,19 +2,68 @@ let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let res = 100;
 let cRes = 3;
-let start = {
-  x: 50,
-  y: 500,
-};
-let ctrlP = {
-  x: 275,
-  y: 50,
-};
-let end = {
-  x: 500,
-  y: 500,
-};
-let subWidth = 20;
+let placed = 0;
+let pointDimension = 20;
+let start;
+let ctrlP;
+let end;
+canvas.addEventListener("click", function (event) {
+  ctx.fillStyle = "blue";
+  if (placed == 0) {
+    start = {
+      x: event.clientX,
+      y: event.clientY,
+    };
+    ctx.fillRect(
+      start.x - pointDimension / 2,
+      start.y - pointDimension / 2,
+      pointDimension,
+      pointDimension
+    );
+    ctx.stroke();
+    placed++;
+  } else if (placed == 1) {
+    ctrlP = {
+      x: event.clientX,
+      y: event.clientY,
+    };
+    ctx.fillRect(
+      ctrlP.x - pointDimension / 2,
+      ctrlP.y - pointDimension / 2,
+      pointDimension,
+      pointDimension
+    );
+    ctx.stroke();
+    placed++;
+  } else if (placed == 2) {
+    end = {
+      x: event.clientX,
+      y: event.clientY,
+    };
+    ctx.fillRect(
+      end.x - pointDimension / 2,
+      end.y - pointDimension / 2,
+      pointDimension,
+      pointDimension
+    );
+    ctx.stroke();
+    quadraticBezier(start, ctrlP, end);
+    placed = 0;
+  }
+});
+// let start = {
+//   x: 50,
+//   y: 500,
+// };
+// let ctrlP = {
+//   x: 275,
+//   y: 50,
+// };
+// let end = {
+//   x: 500,
+//   y: 500,
+// };
+let subWidth = 3;
 let subHeight = subWidth;
 function quadraticBezier(p1, p2, p3) {
   let bezierPoints = [];
@@ -24,17 +73,13 @@ function quadraticBezier(p1, p2, p3) {
   draw(bezierPoints);
 }
 function drawLines(p1, p2, p3, bezierPoints) {
-  ctx.fillStyle = "blue";
-  ctx.fillRect(p1.x - 7, p1.y - 7, 14, 14);
-  ctx.fillRect(p2.x - 7, p2.y - 7, 14, 14);
-  ctx.fillRect(p3.x - 7, p3.y - 7, 14, 14);
   let p1Points = subDiv(p1, p2, res);
   let p2Points = subDiv(p2, p3, res);
   inter(p1Points, p2Points, res, bezierPoints);
 }
 function subDiv(p1, p2, n, t1, t2, sorting) {
   let points = [];
-  for (let i = 1; i < n; i++) {
+  for (let i = 0; i < n; i++) {
     let xCoord = Math.round(p1.x + ((p2.x - p1.x) / n) * i);
     let yCoord = Math.round(p1.y + ((p2.y - p1.y) / n) * i);
     if (!sorting) {
@@ -43,7 +88,7 @@ function subDiv(p1, p2, n, t1, t2, sorting) {
         y: yCoord,
       });
     } else {
-      let tDiff = ((t2 - t1) / n) * i;
+      let tDiff = t1 + ((t2 - t1) / n) * i;
       points.push({
         x: xCoord,
         y: yCoord,
@@ -110,4 +155,3 @@ function sortPoints(bezierPoints) {
   });
   return bezierPoints;
 }
-quadraticBezier(start, ctrlP, end);
