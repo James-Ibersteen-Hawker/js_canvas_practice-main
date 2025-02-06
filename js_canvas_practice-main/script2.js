@@ -435,7 +435,7 @@ function signature() {
     }
     //2nd segment
     {
-      res = 500 * resMultiplier;
+      res = 200 * resMultiplier;
       start = {
         x: 527,
         y: 56,
@@ -510,6 +510,27 @@ function signature() {
       end = {
         x: 361,
         y: 146,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //6th segment
+    {
+      res = 100 * resMultiplier;
+      start = {
+        x: 362,
+        y: 147,
+      };
+      ctrlP = {
+        x: 391,
+        y: 147,
+      };
+      end = {
+        x: 366,
+        y: 155,
       };
       //draw
       sub = quadraticBezier(start, ctrlP, end);
