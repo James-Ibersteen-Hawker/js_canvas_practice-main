@@ -542,3 +542,7 @@ function signature() {
   }
 }
 signature();
+function save() {
+  let url = canvas.toDataURL("image/png");
+  document.getElementById("saveTo").textContent = url;
+}
