@@ -1,85 +1,11 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
-let res = 100;
+let res = 1000;
 let cRes = 3;
 let placed = 0;
 let pointDimension = 5;
-let start;
-let ctrlP;
-let end;
-let startPoints = [];
-let ctrlPPoints = [];
-let endPoints = [];
 canvas.addEventListener("click", function (event) {
-  ctx.fillStyle = "blue";
-  if (startPoints) {
-  } else {
-    if (placed == 0) {
-      start = {
-        x: event.clientX,
-        y: event.clientY,
-      };
-      ctx.fillRect(
-        start.x - pointDimension / 2,
-        start.y - pointDimension / 2,
-        pointDimension,
-        pointDimension
-      );
-      for (let i = event.clientX; i < event.clientX + pointDimension; i++) {
-        for (let q = event.clientY; q < event.clientY + pointDimension; q++) {
-          startPoints.push({
-            x: i,
-            y: q,
-          });
-        }
-      }
-      ctx.stroke();
-      placed++;
-    } else if (placed == 1) {
-      ctrlP = {
-        x: event.clientX,
-        y: event.clientY,
-      };
-      ctx.fillRect(
-        ctrlP.x - pointDimension / 2,
-        ctrlP.y - pointDimension / 2,
-        pointDimension,
-        pointDimension
-      );
-      for (let i = event.clientX; i < event.clientX + pointDimension; i++) {
-        for (let q = event.clientY; q < event.clientY + pointDimension; q++) {
-          ctrlPPoints.push({
-            x: i,
-            y: q,
-          });
-        }
-      }
-      ctx.stroke();
-      placed++;
-    } else if (placed == 2) {
-      end = {
-        x: event.clientX,
-        y: event.clientY,
-      };
-      ctx.fillRect(
-        end.x - pointDimension / 2,
-        end.y - pointDimension / 2,
-        pointDimension,
-        pointDimension
-      );
-      ctx.stroke();
-      for (let i = event.clientX; i < event.clientX + pointDimension; i++) {
-        for (let q = event.clientY; q < event.clientY + pointDimension; q++) {
-          endPoints.push({
-            x: i,
-            y: q,
-          });
-        }
-      }
-      quadraticBezier(start, ctrlP, end);
-      placed = 0;
-    }
-  }
+  alert(`${event.clientX}, ${event.clientY}`);
 });
 let subWidth = 3;
 let subHeight = subWidth;
@@ -88,9 +14,29 @@ function quadraticBezier(p1, p2, p3) {
   drawLines(p1, p2, p3, bezierPoints);
   equalize(bezierPoints);
   bezierPoints = sortPoints(bezierPoints);
-  draw(bezierPoints);
+  // draw(bezierPoints);
+  return bezierPoints;
 }
 function drawLines(p1, p2, p3, bezierPoints) {
+  ctx.fillStyle = "blue";
+  ctx.fillRect(
+    p1.x - pointDimension / 2,
+    p1.y - pointDimension / 2,
+    pointDimension,
+    pointDimension
+  );
+  ctx.fillRect(
+    p2.x - pointDimension / 2,
+    p2.y - pointDimension / 2,
+    pointDimension,
+    pointDimension
+  );
+  ctx.fillRect(
+    p3.x - pointDimension / 2,
+    p3.y - pointDimension / 2,
+    pointDimension,
+    pointDimension
+  );
   let p1Points = subDiv(p1, p2, res);
   let p2Points = subDiv(p2, p3, res);
   inter(p1Points, p2Points, res, bezierPoints);
@@ -161,7 +107,7 @@ function draw(bezierPoints) {
         ctx.fill();
         ctx.stroke();
       },
-      i * 10,
+      i * 2,
       bezierPoints,
       i
     );
@@ -173,3 +119,73 @@ function sortPoints(bezierPoints) {
   });
   return bezierPoints;
 }
+function signature() {
+  let total = [];
+  let start = {
+    x: 10,
+    y: 90,
+  };
+  let ctrlP = {
+    x: 20,
+    y: 145,
+  };
+  let end = {
+    x: 221,
+    y: 55,
+  };
+  //draw
+  let sub = quadraticBezier(start, ctrlP, end);
+  for (let i = 0; i < sub.length; i++) {
+    total.push(sub[i]);
+  }
+  start = {
+    x: 221,
+    y: 55,
+  };
+  ctrlP = {
+    x: 215,
+    y: 80,
+  };
+  end = {
+    x: 190,
+    y: 100,
+  };
+  sub = quadraticBezier(start, ctrlP, end);
+  for (let i = 0; i < sub.length; i++) {
+    total.push(sub[i]);
+  }
+  start = {
+    x: 190,
+    y: 100,
+  };
+  ctrlP = {
+    x: 127,
+    y: 0,
+  };
+  end = {
+    x: 20,
+    y: 145,
+  };
+  sub = quadraticBezier(start, ctrlP, end);
+  for (let i = 0; i < sub.length; i++) {
+    total.push(sub[i]);
+  }
+  start = {
+    x: 20,
+    y: 145,
+  };
+  ctrlP = {
+    x: 20,
+    y: 170,
+  };
+  end = {
+    x: 65,
+    y: 140,
+  };
+  sub = quadraticBezier(start, ctrlP, end);
+  for (let i = 0; i < sub.length; i++) {
+    total.push(sub[i]);
+  }
+  draw(total);
+}
+signature();
