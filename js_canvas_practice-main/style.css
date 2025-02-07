@@ -6,3 +6,13 @@ html {
 body {
   cursor: crosshair;
 }
+
+canvas {
+  transform: scale(1);
+  transition: 0.1s;
+}
+
+canvas:hover {
+  transform: scale(1.5);
+  transition: 0.1s;
+}
