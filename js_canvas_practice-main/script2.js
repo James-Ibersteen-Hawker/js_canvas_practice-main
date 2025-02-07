@@ -1,21 +1,22 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let res = 500;
-let resMultiplier = 1;
+let resMultiplier = 3;
 let cRes = 3;
 let placed = 0;
 let pointDimension = 5;
+let color = "black";
 canvas.addEventListener("click", function (event) {
   alert(`${event.clientX}, ${event.clientY}`);
 });
-let subWidth = 3;
+let subWidth = 1;
 let subHeight = subWidth;
 function quadraticBezier(p1, p2, p3) {
   let bezierPoints = [];
   drawLines(p1, p2, p3, bezierPoints);
   equalize(bezierPoints);
   bezierPoints = sortPoints(bezierPoints);
-  draw(bezierPoints);
+  // draw(bezierPoints);
   return bezierPoints;
 }
 function drawLines(p1, p2, p3, bezierPoints) {
@@ -96,7 +97,7 @@ function draw(bezierPoints) {
   for (let i = 0; i < bezierPoints.length; i++) {
     setTimeout(
       () => {
-        ctx.fillStyle = "black";
+        ctx.fillStyle = color;
         ctx.beginPath();
         ctx.arc(
           bezierPoints[i].x,
@@ -105,10 +106,11 @@ function draw(bezierPoints) {
           0,
           2 * Math.PI
         );
+        ctx.strokeStyle = color;
         ctx.fill();
         ctx.stroke();
       },
-      (i * 2) / resMultiplier,
+      i / 1.5 / resMultiplier,
       bezierPoints,
       i
     );
@@ -538,8 +540,197 @@ function signature() {
         total.push(sub[i]);
       }
     }
-    // draw(total);
+    //7th segment
+    {
+      res = 100 * resMultiplier;
+      start = {
+        x: 367,
+        y: 156,
+      };
+      ctrlP = {
+        x: 451,
+        y: 127,
+      };
+      end = {
+        x: 455,
+        y: 120,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //8th segment
+    {
+      res = 300 * resMultiplier;
+      start = {
+        x: 456,
+        y: 121,
+      };
+      ctrlP = {
+        x: 425,
+        y: 127,
+      };
+      end = {
+        x: 410,
+        y: 160,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //9th segment
+    {
+      res = 100 * resMultiplier;
+      start = {
+        x: 411,
+        y: 161,
+      };
+      ctrlP = {
+        x: 435,
+        y: 145,
+      };
+      end = {
+        x: 440,
+        y: 138,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //10th segment
+    {
+      res = 200 * resMultiplier;
+      start = {
+        x: 441,
+        y: 139,
+      };
+      ctrlP = {
+        x: 415,
+        y: 180,
+      };
+      end = {
+        x: 470,
+        y: 140,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //11th segment
+    {
+      res = 200 * resMultiplier;
+      start = {
+        x: 471,
+        y: 141,
+      };
+      ctrlP = {
+        x: 445,
+        y: 180,
+      };
+      end = {
+        x: 495,
+        y: 130,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //12th segment
+    {
+      res = 100 * resMultiplier;
+      start = {
+        x: 495,
+        y: 130,
+      };
+      ctrlP = {
+        x: 492,
+        y: 140,
+      };
+      end = {
+        x: 500,
+        y: 140,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //13th segment
+    {
+      res = 500 * resMultiplier;
+      start = {
+        x: 499,
+        y: 139,
+      };
+      ctrlP = {
+        x: 470,
+        y: 200,
+      };
+      end = {
+        x: 435,
+        y: 252,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //14th segment
+    {
+      res = 500 * resMultiplier;
+      start = {
+        x: 436,
+        y: 253,
+      };
+      ctrlP = {
+        x: 380,
+        y: 220,
+      };
+      end = {
+        x: 534,
+        y: 145,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //15th segment
+    {
+      res = 100 * resMultiplier;
+      start = {
+        x: 533,
+        y: 144,
+      };
+      ctrlP = {
+        x: 484,
+        y: 183,
+      };
+      end = {
+        x: 510,
+        y: 190,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
   }
+  draw(total);
 }
 signature();
 function save() {
