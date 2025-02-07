@@ -5,7 +5,7 @@ let resMultiplier = 3;
 let cRes = 3;
 let placed = 0;
 let pointDimension = 5;
-let color = "black";
+let color = "red";
 canvas.addEventListener("click", function (event) {
   alert(`${event.clientX}, ${event.clientY}`);
 });
@@ -110,7 +110,7 @@ function draw(bezierPoints) {
         ctx.fill();
         ctx.stroke();
       },
-      i / 1.5 / resMultiplier,
+      i / 3 / resMultiplier,
       bezierPoints,
       i
     );
@@ -668,18 +668,18 @@ function signature() {
     }
     //13th segment
     {
-      res = 500 * resMultiplier;
+      res = 100 * resMultiplier;
       start = {
         x: 499,
         y: 139,
       };
       ctrlP = {
-        x: 470,
-        y: 200,
+        x: 490,
+        y: 150,
       };
       end = {
-        x: 435,
-        y: 252,
+        x: 460,
+        y: 202,
       };
       //draw
       sub = quadraticBezier(start, ctrlP, end);
@@ -689,14 +689,35 @@ function signature() {
     }
     //14th segment
     {
-      res = 500 * resMultiplier;
+      res = 100 * resMultiplier;
       start = {
-        x: 436,
-        y: 253,
+        x: 460,
+        y: 202,
       };
       ctrlP = {
-        x: 380,
-        y: 220,
+        x: 421,
+        y: 259,
+      };
+      end = {
+        x: 434,
+        y: 212,
+      };
+      //draw
+      sub = quadraticBezier(start, ctrlP, end);
+      for (let i = 0; i < sub.length; i++) {
+        total.push(sub[i]);
+      }
+    }
+    //15th segment
+    {
+      res = 100 * resMultiplier;
+      start = {
+        x: 434,
+        y: 212,
+      };
+      ctrlP = {
+        x: 452,
+        y: 153,
       };
       end = {
         x: 534,
@@ -708,9 +729,9 @@ function signature() {
         total.push(sub[i]);
       }
     }
-    //15th segment
+    //16th segment
     {
-      res = 100 * resMultiplier;
+      res = 200 * resMultiplier;
       start = {
         x: 533,
         y: 144,
